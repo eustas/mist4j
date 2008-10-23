@@ -99,11 +99,11 @@ public class DirectPerformanceTest {
 		// virtual
 		ITemplate template = loader.loadTemplate("fake", FakeRenderer.class);
 		FakeRenderer victim = new FakeRenderer();
-		for (int i = 0; i < 50000000; i++) {
+		for (int i = 0; i < 1000000; i++) {
 			template.process(victim);
 		}
 		long t0 = System.nanoTime();
-		for (int i = 0; i < 50000000; i++) {
+		for (int i = 0; i < 1000000; i++) {
 			template.process(victim);
 		}
 		long t1 = System.nanoTime();
@@ -111,11 +111,11 @@ public class DirectPerformanceTest {
 		ITemplate templateD = loader.loadTemplate("fake", FakeRendererD.class,
 				FakeWriter.class);
 		FakeRendererD victimD = new FakeRendererD();
-		for (int i = 0; i < 50000000; i++) {
+		for (int i = 0; i < 1000000; i++) {
 			templateD.process(victimD);
 		}
 		long t0d = System.nanoTime();
-		for (int i = 0; i < 50000000; i++) {
+		for (int i = 0; i < 1000000; i++) {
 			templateD.process(victimD);
 		}
 		long t1d = System.nanoTime();
