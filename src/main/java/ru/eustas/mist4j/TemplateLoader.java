@@ -1,6 +1,7 @@
 package ru.eustas.mist4j;
 
 import java.io.IOException;
+import java.io.Writer;
 import java.lang.reflect.Constructor;
 import java.lang.reflect.InvocationTargetException;
 import java.util.StringTokenizer;
@@ -13,13 +14,14 @@ import org.objectweb.asm.Type;
  * 
  * <p>
  * Loaded class name has a package which is sub-package of source-object class
- * package. Also class name is formed of temlpate name and internal counter.
- * This prevents the different template implenemations to be loaded under the
+ * package. Also class name is formed of template name and internal counter.
+ * This prevents the different template implementations to be loaded under the
  * same class name.
  * </p>
  * 
  * @author Klyuchnikow Eugene
  * @version 2008.10.20 - initial version
+ * @version 2008.10.20 - added writer class management
  */
 public class TemplateLoader extends ClassLoader {
 
@@ -133,9 +135,34 @@ public class TemplateLoader extends ClassLoader {
 	 * that byte-code is generated, loaded and resolved. The last thing - class
 	 * instance is created, using literal data.
 	 * </p>
+	 * 
+	 * @param templateName
+	 *            resource name withour suffix
+	 * @param cls
+	 *            victim class
+	 * @param writerClass
+	 *            a {@link Writer} class, whose
+	 *            {@link Writer#write(char[], int, int)} will be used by
+	 *            template
+	 * @return constructed and initialized template instance
+	 * @throws SecurityException
+	 *             propagated from reflection
+	 * @throws NoSuchMethodException
+	 *             propagated from reflection
+	 * @throws IllegalArgumentException
+	 *             propagated from reflection
+	 * @throws InstantiationException
+	 *             propagated from reflection
+	 * @throws IllegalAccessException
+	 *             propagated from reflection
+	 * @throws InvocationTargetException
+	 *             propagated from reflection
+	 * @throws IOException
+	 *             propagated from resource loading
 	 */
 	public ITemplate loadTemplate(String templateName,
-			Class<? extends IFastRenderer> cls) throws SecurityException,
+			Class<? extends IFastRenderer> cls,
+			Class<? extends Writer> writerClass) throws SecurityException,
 			NoSuchMethodException, IllegalArgumentException,
 			InstantiationException, IllegalAccessException,
 			InvocationTargetException, IOException {
@@ -143,12 +170,13 @@ public class TemplateLoader extends ClassLoader {
 		String genCls = pkg + PACKAGE_SUFFIX + camelizeName(templateName)
 				+ index.incrementAndGet();
 		String victimName = Type.getType(cls).getInternalName();
+		String writerName = Type.getType(writerClass).getInternalName();
 
 		String template = loader.getResource(templateName + TEMPLATES_SUFFIX)
 				.getContent();
 		TemplateData data = TemplateParser.parseTemplate(template);
 
-		byte[] b = TemplateAsm.dump(genCls, victimName, data.ranges,
+		byte[] b = TemplateAsm.dump(genCls, victimName, writerName, data.ranges,
 				data.invokers);
 
 		Class<?> defineClass = defineClass(toClassName(genCls), b, 0, b.length);
@@ -158,5 +186,37 @@ public class TemplateLoader extends ClassLoader {
 				.getClass());
 		Object instance = constructor.newInstance(literals);
 		return (ITemplate) instance;
+	}
+
+	/**
+	 * A most common use case of {@link #loadTemplate(String, Class, Class)} -
+	 * the writer class is {@link Writer}.
+	 * 
+	 * @param templateName
+	 *            resource name withour suffix
+	 * @param cls
+	 *            victim class
+	 * @return constructed and initialized template instance
+	 * @throws SecurityException
+	 *             propagated from reflection
+	 * @throws NoSuchMethodException
+	 *             propagated from reflection
+	 * @throws IllegalArgumentException
+	 *             propagated from reflection
+	 * @throws InstantiationException
+	 *             propagated from reflection
+	 * @throws IllegalAccessException
+	 *             propagated from reflection
+	 * @throws InvocationTargetException
+	 *             propagated from reflection
+	 * @throws IOException
+	 *             propagated from resource loading
+	 */
+	public ITemplate loadTemplate(String templateName,
+			Class<? extends IFastRenderer> cls) throws SecurityException,
+			NoSuchMethodException, IllegalArgumentException,
+			InstantiationException, IllegalAccessException,
+			InvocationTargetException, IOException {
+		return loadTemplate(templateName, cls, Writer.class);
 	}
 }

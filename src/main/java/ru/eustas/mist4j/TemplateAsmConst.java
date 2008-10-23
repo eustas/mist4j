@@ -20,6 +20,7 @@ import org.objectweb.asm.Type;
  * 
  * @author Klyuchnikow Eugene
  * @version 2008.10.20 - initial version
+ * @version 2008.10.23 - removed writer class constants
  */
 public class TemplateAsmConst {
 	/**
@@ -48,14 +49,11 @@ public class TemplateAsmConst {
 	static final String VOID_METHOD = "()V";
 
 	/**
-	 * {@link IFastRenderer#getOut()} method name signature.
-	 */
-	static final String RETURN_WRITER_METHOD = "()Ljava/io/Writer;";
-
-	/**
 	 * Char-array type.
 	 */
 	static final String CHAR_ARRAY = "[C";
+	
+	static final String PARAMETERLESS = "()";
 
 	/**
 	 * "literal" field name.
@@ -122,11 +120,6 @@ public class TemplateAsmConst {
 	 * {@link Object} internal class name.
 	 */
 	final static String OBJECT = Type.getType(Object.class).getInternalName();
-
-	/**
-	 * {@link Writer} internal class name.
-	 */
-	final static String WRITER = Type.getType(Writer.class).getInternalName();
 
 	/**
 	 * {@link IOException} internal class name.

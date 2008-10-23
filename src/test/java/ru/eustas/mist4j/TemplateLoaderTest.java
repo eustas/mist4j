@@ -19,11 +19,6 @@ public class TemplateLoaderTest {
 		public String getContent() throws IOException {
 			return text;
 		}
-
-		// @Override
-		// public boolean isActual() {
-		// return true;
-		// }
 	}
 
 	public static class FakeSource implements ITemplateSource {
