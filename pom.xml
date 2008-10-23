@@ -5,7 +5,7 @@
 	<groupId>ru.eustas.mist4j</groupId>
 	<artifactId>mist4j</artifactId>
 	<packaging>jar</packaging>
-	<version>1.0-SNAPSHOT</version>
+	<version>1.00rc1</version>
 	<name>mist4j</name>
 	<dependencies>
 		<dependency>
@@ -24,7 +24,7 @@
 		<name>Eustas</name>
 	</organization>
 	<build>
-		<finalName>mist4j</finalName>
+		<finalName>mist4j-${project.version}</finalName>
 		<plugins>
 			<plugin>
 				<artifactId>maven-compiler-plugin</artifactId>
