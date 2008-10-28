@@ -108,7 +108,7 @@ public class TemplateLoader extends ClassLoader {
 	 * </p>
 	 * 
 	 * @param internalName
-	 * @return
+	 * @return "java" representation of internalName
 	 */
 	private final static String toClassName(String internalName) {
 		return internalName.replace('/', '.');
@@ -122,7 +122,7 @@ public class TemplateLoader extends ClassLoader {
 	 * </p>
 	 * 
 	 * @param className
-	 * @return
+	 * @return "internal" representation of className
 	 */
 	private final static String toInternalName(String className) {
 		return className.replace('.', '/');
@@ -190,8 +190,8 @@ public class TemplateLoader extends ClassLoader {
 				.getContent();
 		TemplateData data = TemplateParser.parseTemplate(template);
 
-		byte[] b = TemplateAsm.dump(genCls, victimName, writerName, data.ranges,
-				data.invokers);
+		byte[] b = TemplateAsm.dump(genCls, victimName, writerName,
+				data.ranges, data.invokers);
 
 		Class<?> defineClass = defineClass(toClassName(genCls), b, 0, b.length);
 		resolveClass(defineClass);

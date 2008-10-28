@@ -33,7 +33,7 @@ public interface ITemplateSource {
 	 * Get instance of {@link ITemplateResource} corresponding to template name.
 	 * 
 	 * @param templateName
-	 * @return
+	 * @return a system-resource wrapper for a given templateName
 	 */
 	ITemplateResource getResource(String templateName);
 }
