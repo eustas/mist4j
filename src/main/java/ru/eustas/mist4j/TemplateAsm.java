@@ -31,7 +31,7 @@ import ru.eustas.mist4j.TemplateData.Range;
  * @version 2008.10.20 - initial version
  * @version 2008.10.23 - added writer class management 
  */
-public class TemplateAsm extends TemplateAsmConst implements Opcodes {
+class TemplateAsm extends TemplateAsmConst implements Opcodes {
 
 	/**
 	 * Generating method.

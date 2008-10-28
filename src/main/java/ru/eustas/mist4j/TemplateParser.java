@@ -26,7 +26,7 @@ import ru.eustas.mist4j.TemplateData.Range;
  * @author Klyuchnikow Eugene
  * @version 2008.10.20 - initial version
  */
-public class TemplateParser {
+class TemplateParser {
 	/**
 	 * Prefix added to substitute id to get method name.
 	 */

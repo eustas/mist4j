@@ -36,7 +36,7 @@ import org.objectweb.asm.Type;
  * @version 2008.10.20 - initial version
  * @version 2008.10.23 - removed writer class constants
  */
-public class TemplateAsmConst {
+class TemplateAsmConst {
 	/**
 	 * Constructor method name.
 	 */
