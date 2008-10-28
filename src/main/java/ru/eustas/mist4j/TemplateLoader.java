@@ -135,7 +135,7 @@ public class TemplateLoader extends ClassLoader {
 	 * @param out
 	 * @param token
 	 */
-	public final static void writeCamel(StringBuilder out, String token) {
+	private final static void writeCamel(StringBuilder out, String token) {
 		out.append(token.substring(0, 1).toUpperCase()).append(
 				token.substring(1));
 	}
