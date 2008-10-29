@@ -45,12 +45,6 @@ public class TemplateLoader extends ClassLoader {
 	private static final String PACKAGE_SUFFIX = "/runtime/generated/Template";
 
 	/**
-	 * All template files has the name "<i>templateName</i><b>{@value} </b>". So
-	 * it is the suffix.
-	 */
-	private static final String TEMPLATES_SUFFIX = ".html";
-
-	/**
 	 * Template source, configured in constructor.
 	 */
 	private final ITemplateSource loader;
@@ -186,8 +180,7 @@ public class TemplateLoader extends ClassLoader {
 		String victimName = Type.getType(cls).getInternalName();
 		String writerName = Type.getType(writerClass).getInternalName();
 
-		String template = loader.getResource(templateName + TEMPLATES_SUFFIX)
-				.getContent();
+		String template = loader.getResource(templateName).getContent();
 		TemplateData data = TemplateParser.parseTemplate(template);
 
 		byte[] b = TemplateAsm.dump(genCls, victimName, writerName,
