@@ -138,14 +138,13 @@ public class TemplateLoader extends ClassLoader {
 	 * Load resource as String and construct template-instance from it.
 	 * 
 	 * <p>
-	 * Resource name is constructed from template name, with appending
-	 * {@value #TEMPLATES_SUFFIX}. Then resource is loaded and parsed. After
-	 * that byte-code is generated, loaded and resolved. The last thing - class
-	 * instance is created, using literal data.
+	 * Resource is loaded and parsed. After that byte-code is generated, loaded
+	 * and resolved. The last thing - class instance is created, using literal
+	 * data.
 	 * </p>
 	 * 
 	 * @param templateName
-	 *            resource name withour suffix
+	 *            resource name
 	 * @param cls
 	 *            victim class
 	 * @param writerClass
@@ -200,7 +199,7 @@ public class TemplateLoader extends ClassLoader {
 	 * the writer class is {@link Writer}.
 	 * 
 	 * @param templateName
-	 *            resource name withour suffix
+	 *            resource name
 	 * @param cls
 	 *            victim class
 	 * @return constructed and initialized template instance
