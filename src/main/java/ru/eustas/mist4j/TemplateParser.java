@@ -26,7 +26,7 @@ import ru.eustas.mist4j.TemplateData.Range;
  * @author Klyuchnikow Eugene
  * @version 2008.10.20 - initial version
  */
-class TemplateParser {
+final class TemplateParser {
 	/**
 	 * Prefix added to substitute id to get method name.
 	 */
@@ -55,7 +55,7 @@ class TemplateParser {
 	 *            template content
 	 * @return structure describing template
 	 */
-	static TemplateData parseTemplate(String source) {
+	static final TemplateData parseTemplate(String source) {
 		int last = 0;
 		int now = 0;
 		int length = source.length();

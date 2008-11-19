@@ -26,7 +26,7 @@ import java.util.Arrays;
  * @author Klyuchnikow Eugene
  * @version 2008.10.20 - initial version
  */
-class TemplateData {
+final class TemplateData {
 	/**
 	 * A data-holder class for library-internal use.
 	 * 
@@ -38,7 +38,7 @@ class TemplateData {
 	 * @author Klyuchnikow Eugene
 	 * @version 2008.10.20 - initial version
 	 */
-	static class Range {
+	static final class Range {
 		final int start;
 		final int len;
 

@@ -37,7 +37,7 @@ import org.objectweb.asm.Type;
  * @version 2008.10.20 - initial version
  * @version 2008.10.20 - added writer class management
  */
-public class TemplateLoader extends ClassLoader {
+public final class TemplateLoader extends ClassLoader {
 
 	/**
 	 * Suffix added to package name to get generated class package.
@@ -167,7 +167,7 @@ public class TemplateLoader extends ClassLoader {
 	 * @throws IOException
 	 *             propagated from resource loading
 	 */
-	public ITemplate loadTemplate(String templateName,
+	public final ITemplate loadTemplate(String templateName,
 			Class<? extends IFastRenderer> cls,
 			Class<? extends Writer> writerClass) throws SecurityException,
 			NoSuchMethodException, IllegalArgumentException,
@@ -218,7 +218,7 @@ public class TemplateLoader extends ClassLoader {
 	 * @throws IOException
 	 *             propagated from resource loading
 	 */
-	public ITemplate loadTemplate(String templateName,
+	public final ITemplate loadTemplate(String templateName,
 			Class<? extends IFastRenderer> cls) throws SecurityException,
 			NoSuchMethodException, IllegalArgumentException,
 			InstantiationException, IllegalAccessException,

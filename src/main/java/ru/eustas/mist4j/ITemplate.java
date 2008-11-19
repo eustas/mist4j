@@ -32,7 +32,7 @@ public interface ITemplate {
 	 * <tt><b>void render</b><i>XXX</i><b>()</b></tt> methods of victim.
 	 * 
 	 * @param victim
-	 *            source-object, that will be invoked to render substituton
+	 *            source-object, that will be invoked to render substitution
 	 *            parts
 	 * @throws IOException
 	 *             thrown by {@link Writer#write(char[], int, int)} or

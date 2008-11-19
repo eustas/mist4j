@@ -5,7 +5,7 @@
 	<groupId>ru.eustas.mist4j</groupId>
 	<artifactId>mist4j</artifactId>
 	<packaging>jar</packaging>
-	<version>1.00rc2</version>
+	<version>1.00-final</version>
 	<name>mist4j</name>
 	<dependencies>
 		<dependency>
